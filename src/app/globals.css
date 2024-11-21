@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+     /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+    }
+  }
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+.fade-top {
+  background: linear-gradient(to bottom, #000000, transparent);
+}
+
+.fade-bottom {
+  background: linear-gradient(to top, #141414, transparent);
+}
+
+.section-gradient{
+  background: linear-gradient(
+    90deg,
+    #000000 2%,
+    hsla(0, 0%, 6%, 0.97) 16%,
+    hsla(0, 42%, 9%, 0.91) 28%,
+    rgba(229, 0, 0, 0.101) 100%
+  );
+}
+.section-margins{
+  margin-top: 15vh;
+  margin-left: 6vw;
+  margin-right: 6vw;
+   margin-bottom: 15vh;
+}
+
+/* Custom CSS for PhoneInput */
+
+.phone-input .PhoneInputInput {
+  background-color: transparent; /* Tailwind's gray-800 */
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  outline: none;
+  height: fit-content;
+}
+
+.phone-input .PhoneInputCountry {
+  padding-right: 0.5rem;
+  border-right: 1px solid rgba(128, 128, 128, 0.222)
+}
+
+
+.phone-input {
+  background-color: #141414;
+}
+
+.phone-input .PhoneInputInternationalIcon {
+  padding-right: 0.5rem;
+  color: white;
+  background-color: pink;
+}
+
+/* .PhoneInputCountry{
+  height: 2rem;
+} */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
