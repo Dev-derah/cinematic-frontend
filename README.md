@@ -1,10 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Cinematic AI - AI-Powered Movie Recommendations
 
-## Getting Started
+Cinematic AI is an AI-powered web application built with Next.js, Clerk for authentication, and TMDB API integration to provide personalized movie and TV show recommendations. This project leverages cutting-edge technologies to offer a seamless user experience with features such as user authentication, dynamic navigation, and mobile responsiveness.
 
-First, run the development server:
+Getting Started
 
-```bash
+Follow these instructions to set up and run the project on your local machine.
+
+Prerequisites
+Make sure you have the following installed:
+
+Node.js (version 16 or higher)
+npm, yarn, or pnpm (for package management)
+Bun (optional, if you prefer Bun for development)
+Installation
+Clone the repository:
+git clone https://github.com/your-username/cinematic-ai.git
+cd cinematic-ai
+Install dependencies:
+npm install
+# or
+yarn install
+# or
+pnpm install
+Configure environment variables:
+Create a .env.local file in the root directory.
+Add the following environment variables:
+NEXT_PUBLIC_TMDB_API_KEY=<your_tmdb_api_key>
+NEXT_PUBLIC_CLERK_FRONTEND_API=<your_clerk_frontend_api_key>
+NEXT_PUBLIC_BACKEND_URL=<your_backend_api_url> # Optional
+Running the Development Server
+To start the development server, run:
+
 npm run dev
 # or
 yarn dev
@@ -12,25 +38,80 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
+Open http://localhost:3000 in your browser to view the app.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Building for Production
+To build the app for production:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+npm run build
+# or
+yarn build
+To preview the production build locally:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run start
+# or
+yarn start
+Features
 
-## Learn More
+User Authentication: Powered by Clerk, allowing users to sign up, log in, and manage their profiles.
+Personalized Recommendations: Uses AI to analyze user preferences and recommend movies and TV shows.
+TMDB Integration: Fetches real-time movie and TV show data.
+Mobile-Responsive UI: Fully responsive design for seamless use on desktop and mobile devices.
+Dynamic Navigation: Intuitive navigation bar with dropdowns for quick access to features.
+Interactive Chat Interface: Engage with AI to discover tailored recommendations.
+Dark Theme: Sleek, modern design with a focus on readability and aesthetics.
+Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+Frontend:
+Next.js (React Framework)
+Tailwind CSS (Styling)
+React Icons (Iconography)
+React Typed (Dynamic Typing Animation)
+Authentication:
+Clerk (User Authentication and Management)
+Backend API:
+TMDB API (Movie and TV Show Data)
+Deployment:
+Vercel (Hosting and CI/CD)
+File Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Development Workflow
 
-## Deploy on Vercel
+Authentication Setup:
+Ensure the Clerk frontend API key is configured in .env.local.
+TMDB API Integration:
+Add your TMDB API key to fetch movie and TV data.
+Component Development:
+Reuse modular components like Dropdown and UserInfo to maintain DRY principles.
+Testing:
+Test your app in various screen sizes to ensure mobile responsiveness.
+Deployment:
+Deploy the app to Vercel using the command:
+vercel
+Learn More
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Next.js Documentation - Learn about Next.js features and API.
+Clerk Documentation - Get started with Clerk.
+TMDB API Documentation - Learn about the TMDB API.
+Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+We welcome contributions! If you'd like to contribute:
+
+Fork the repository.
+Create a feature branch:
+git checkout -b feature/your-feature
+Commit your changes:
+git commit -m "Add your message"
+Push to the branch:
+git push origin feature/your-feature
+Open a Pull Request.
+License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Contact
+
+For questions or support, please contact:
+
+Email: derah.dev@gmail.com
