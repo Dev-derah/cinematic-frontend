@@ -26,7 +26,7 @@ export const Navbar = () => {
   const navItems = [
     { label: "Home", route: "/" },
     { label: "Movies", route: "/movies" },
-    { label: "TV Shows", route: "/tv-shows" },
+    { label: "TV Shows", route: "/tvshows" },
     { label: "Support", route: "/support" },
   ];
 
@@ -61,7 +61,7 @@ export const Navbar = () => {
 
   return (
     <header className="h-[10vh] fixed z-50 w-full text-white">
-      <section className="relative flex justify-between items-center px-10 pt-7 pb-2 gap-8 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+      <section className="relative flex justify-between items-center px-10 pt-5 pb-2 gap-8 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         {/* Left Section */}
         <div className="text-left">
           <Image
@@ -139,12 +139,12 @@ export const Navbar = () => {
                 <>
                   <button
                     className="flex items-center gap-2 w-full text-left px-4 py-2 hover:font-bold"
-                    // onClick={handleAllChats}
+                    onClick={()=> router.push('/chats')}
                   >
                     <span>
                       <IoChatbubblesOutline />
                     </span>
-                    All Chats
+                    Recommendations
                   </button>
                   <SignOutButton>
                     <button className="flex items-center gap-2 w-full text-left px-4 py-2 hover:font-bold">

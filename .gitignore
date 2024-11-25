@@ -1,1 +1,66 @@
-node_modules
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+.next/
+out/
+
+# Log files
+logs/
+*.log
+*.gz
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Environment variable files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+
+# MacOS system files
+.DS_Store
+
+# Images and media files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+
+# Coverage directories
+coverage/
+
+# Temporary files
+tmp/
+temp/
+
+# TypeScript
+*.tsbuildinfo
+
+# Ignore any archive files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.gzip
+
+# Ignore static uploads (if applicable)
+public/uploads/
+
+# Ignore Next.js build files
+.next/

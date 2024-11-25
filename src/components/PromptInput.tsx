@@ -32,7 +32,7 @@ const setPrompt = (prompt: string) => {
 };
   return (
     <>
-      <div className="relative h-fit rounded-3xl flex bg-black-15 p-4">
+      <div className="relative h-fit w-full rounded-3xl flex bg-black-15 p-4">
         <form
           onSubmit={handleSubmit}
           className="w-full h-full"

@@ -91,3 +91,32 @@
     text-wrap: balance;
   }
 }
+
+/* Tailwind classes */
+.sidebar {
+  @apply fixed inset-y-0 left-0 z-50 w-3/4 bg-background transform -translate-x-full transition-transform duration-300 ease-in-out;
+}
+
+.sidebar.open {
+  @apply translate-x-0;
+}
+.main-content {
+  @apply flex-1 flex flex-col;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    @apply relative translate-x-0 w-1/5; /* Sidebar is always visible on desktop */
+  }
+}
+
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Sidebar spans the full height */
+    position: relative;
+    overflow-y: auto;
+}
+
+
