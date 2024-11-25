@@ -1,57 +1,63 @@
-Cinematic AI - AI-Powered Movie Recommendations
+# Cinematic AI - AI-Powered Movie Recommendations
 
 Cinematic AI is an AI-powered web application built with Next.js, Clerk for authentication, and TMDB API integration to provide personalized movie and TV show recommendations. This project leverages cutting-edge technologies to offer a seamless user experience with features such as user authentication, dynamic navigation, and mobile responsiveness.
 
-Getting Started
+## Getting Started
 
 Follow these instructions to set up and run the project on your local machine.
 
-Prerequisites
+### Prerequisites
 Make sure you have the following installed:
 
-Node.js (version 16 or higher)
-npm, yarn, or pnpm (for package management)
-Bun (optional, if you prefer Bun for development)
-Installation
-Clone the repository:
+- Node.js (version 16 or higher)
+- npm, yarn, or pnpm (for package management)
+- Bun (optional, if you prefer Bun for development)
+
+## Installation
+ Clone the repository:
+```sh
 git clone https://github.com/your-username/cinematic-ai.git
 cd cinematic-ai
-Install dependencies:
-npm install
-# or
-yarn install
-# or
-pnpm install
-Configure environment variables:
-Create a .env.local file in the root directory.
-Add the following environment variables:
+```
+
+## Install dependencies:
+
+#### Configure environment variables:
+- Create a .env.local file in the root directory.
+- Add the following environment variables:
+```sh
 NEXT_PUBLIC_TMDB_API_KEY=<your_tmdb_api_key>
 NEXT_PUBLIC_CLERK_FRONTEND_API=<your_clerk_frontend_api_key>
 NEXT_PUBLIC_BACKEND_URL=<your_backend_api_url> # Optional
-Running the Development Server
-To start the development server, run:
+```
 
+### Running the Development Server
+To start the development server, run:
+```sh
 npm run dev
-# or
+ or
 yarn dev
-# or
+ or
 pnpm dev
-# or
+ or
 bun dev
+```
+
 Open http://localhost:3000 in your browser to view the app.
 
-Building for Production
+### Building for Production
 To build the app for production:
-
+```sh
 npm run build
-# or
+or
 yarn build
 To preview the production build locally:
 
 npm run start
-# or
+or
 yarn start
-Features
+```
+### Features
 
 User Authentication: Powered by Clerk, allowing users to sign up, log in, and manage their profiles.
 Personalized Recommendations: Uses AI to analyze user preferences and recommend movies and TV shows.
@@ -62,55 +68,38 @@ Interactive Chat Interface: Engage with AI to discover tailored recommendations.
 Dark Theme: Sleek, modern design with a focus on readability and aesthetics.
 Technologies Used
 
-Frontend:
-Next.js (React Framework)
-Tailwind CSS (Styling)
-React Icons (Iconography)
-React Typed (Dynamic Typing Animation)
-Authentication:
-Clerk (User Authentication and Management)
-Backend API:
-TMDB API (Movie and TV Show Data)
-Deployment:
-Vercel (Hosting and CI/CD)
-File Structure
+### Frontend:
+- Next.js (React Framework)
+- Tailwind CSS (Styling)
+- React Icons (Iconography)
+- React Typed (Dynamic Typing Animation)
+- Authentication:
+- Clerk (User Authentication and Management)
+- Backend API:
+- TMDB API (Movie and TV Show Data)
+- Deployment:
+- Vercel (Hosting and CI/CD)
 
 
-Development Workflow
+### Development Workflow
 
-Authentication Setup:
+##### Authentication Setup:
 Ensure the Clerk frontend API key is configured in .env.local.
-TMDB API Integration:
+
+##### TMDB API Integration:
 Add your TMDB API key to fetch movie and TV data.
-Component Development:
+
+##### Component Development:
 Reuse modular components like Dropdown and UserInfo to maintain DRY principles.
-Testing:
+
+##### Testing:
 Test your app in various screen sizes to ensure mobile responsiveness.
-Deployment:
+
+##### Deployment:
 Deploy the app to Vercel using the command:
 vercel
-Learn More
 
-Next.js Documentation - Learn about Next.js features and API.
-Clerk Documentation - Get started with Clerk.
-TMDB API Documentation - Learn about the TMDB API.
-Contributing
-
-We welcome contributions! If you'd like to contribute:
-
-Fork the repository.
-Create a feature branch:
-git checkout -b feature/your-feature
-Commit your changes:
-git commit -m "Add your message"
-Push to the branch:
-git push origin feature/your-feature
-Open a Pull Request.
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Contact
+### Contact
 
 For questions or support, please contact:
 
