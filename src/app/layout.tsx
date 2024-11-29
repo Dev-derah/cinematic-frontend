@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import {
-  ClerkProvider,
-} from "@clerk/nextjs";
 import "./globals.css";
 import { PopularMoviesProvider } from "@/context/PopularMoviesProvider";
+import { AuthProvider } from "@/context/AuthContext";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -20,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <AuthProvider>
       <html lang="en">
         <body
           className={`${manrope.className} flex flex-col bg-black-08 relative`}
@@ -28,6 +26,6 @@ export default function RootLayout({
           <PopularMoviesProvider>{children}</PopularMoviesProvider>
         </body>
       </html>
-    </ClerkProvider>
+    </AuthProvider>
   );
 }

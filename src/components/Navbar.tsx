@@ -6,17 +6,11 @@ import { IoChatbubblesOutline, IoLogOutOutline } from "react-icons/io5";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { MenuItem } from "@/components/MenuItem";
 import { useRouter, usePathname }  from "next/navigation";
-import {
-  SignInButton,
-  SignOutButton,
-  SignUpButton,
-  useUser,
-} from "@clerk/nextjs";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
 
 export const Navbar = () => {
-  const { user } = useUser();
-
+  const { user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [profilemenuOpen, setProfileMenuOpen] = useState(false);
   const [activeNav, setActiveNav] = useState<string | null>(null);
@@ -100,7 +94,9 @@ export const Navbar = () => {
                   Welcome {user.firstName || user.username || "User"}!
                 </span>
                 <Image
-                  src={user.imageUrl}
+                  src={
+                    "https://res.cloudinary.com/dcvpqwloa/image/upload/v1732898781/cinematic%20Avatars/ac2b8390-f045-4e70-a507-9955759808e4.png"
+                  }
                   alt="Profile"
                   width={40}
                   height={40}
@@ -109,21 +105,17 @@ export const Navbar = () => {
               </>
             ) : (
               <div className="flex gap-4">
-                <SignInButton>
-                  {/* <CustomButton label="Login" className="bg-red-50 px-6 py-2  rounded-lg"/> */}
-                  <button className="bg-red-50 px-6 py-2 rounded-lg">
-                    Login
-                  </button>
-                </SignInButton>
-                <SignUpButton>
-                  {/* <CustomButton
+                {/* <CustomButton label="Login" className="bg-red-50 px-6 py-2  rounded-lg"/> */}
+                <button className="bg-red-50 px-6 py-2 rounded-lg">
+                  Login
+                </button>
+                {/* <CustomButton
                     label="Sign Up"
                     className="border-2 border-gray-300 px-6 py-2 rounded-lg"
                   /> */}
-                  <button className="border-2 border-gray-300 px-6 py-2 rounded-lg">
-                    Sign Up
-                  </button>
-                </SignUpButton>
+                <button className="border-2 border-gray-300 px-6 py-2 rounded-lg">
+                  Sign Up
+                </button>
               </div>
             )}
           </div>
@@ -139,21 +131,19 @@ export const Navbar = () => {
                 <>
                   <button
                     className="flex items-center gap-2 w-full text-left px-4 py-2 hover:font-bold"
-                    onClick={()=> router.push('/chats')}
+                    onClick={() => router.push("/chats")}
                   >
                     <span>
                       <IoChatbubblesOutline />
                     </span>
                     Recommendations
                   </button>
-                  <SignOutButton>
-                    <button className="flex items-center gap-2 w-full text-left px-4 py-2 hover:font-bold">
-                      <span>
-                        <IoLogOutOutline />
-                      </span>
-                      Logout
-                    </button>
-                  </SignOutButton>
+                  <button className="flex items-center gap-2 w-full text-left px-4 py-2 hover:font-bold">
+                    <span>
+                      <IoLogOutOutline />
+                    </span>
+                    Logout
+                  </button>
                 </>
               ) : null}
             </div>
@@ -238,28 +228,22 @@ export const Navbar = () => {
                         {user.fullName || user.username || "User"}
                       </span>
                     </div>
-                    <SignOutButton>
-                      <button className="flex items-center gap-2 w-full text-left py-2 hover:font-bold">
-                        <span>
-                          <IoLogOutOutline className="text-2xl" />
-                        </span>
-                        Logout
-                      </button>
-                    </SignOutButton>
+                    <button className="flex items-center gap-2 w-full text-left py-2 hover:font-bold">
+                      <span>
+                        <IoLogOutOutline className="text-2xl" />
+                      </span>
+                      Logout
+                    </button>
                   </div>
                 </>
               ) : (
                 <div className="flex flex-col-reverse gap-4">
-                  <SignInButton>
-                    <button className="bg-red-50 px-6 py-2 h-fit rounded-lg">
-                      Login
-                    </button>
-                  </SignInButton>
-                  <SignUpButton>
-                    <button className="border-2 border-gray-300 px-6 py-2 rounded-lg">
-                      Sign Up
-                    </button>
-                  </SignUpButton>
+                  <button className="bg-red-50 px-6 py-2 h-fit rounded-lg">
+                    Login
+                  </button>
+                  <button className="border-2 border-gray-300 px-6 py-2 rounded-lg">
+                    Sign Up
+                  </button>
                 </div>
               )}
             </div>

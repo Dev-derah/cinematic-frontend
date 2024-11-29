@@ -327,7 +327,7 @@ export default function Chat() {
 
   const handleNavigation = (route: string) => {
     router.push(route);
-    setIsDropdownOpen(false); 
+    setIsDropdownOpen(false);
   };
 
   return (
@@ -357,21 +357,31 @@ export default function Chat() {
         } transition-all duration-300`}
       >
         <header
-          className={`fixed top-0 p-4 shadow-md flex justify-between items-center w-full`}
+          className={`fixed w-full top-0 p-4 shadow-md flex justify-between items-center transition-all duration-300 md:w-4/5`}
         >
-          <Dropdown
-            title="Recommendations"
-            isOpen={isDropdownOpen}
-            toggleDropdown={toggleDropdown}
-            items={[
-              { label: "Movies", action: () => router.push("/movies") },
-              { label: "TV Series", action: () => router.push("/tvshows") },
-            ]}
-          />
+          {/* Left Section - Recommendations Dropdown */}
+          <div className="flex items-center">
+            <Dropdown
+              title="Recommendations"
+              isOpen={isDropdownOpen}
+              toggleDropdown={toggleDropdown}
+              items={[
+                { label: "Movies", action: () => router.push("/movies") },
+                { label: "TV Series", action: () => router.push("/tvshows") },
+              ]}
+            />
+          </div>
 
-          <button className="block md:hidden" onClick={toggleSidebar}>
-            <CiMenuKebab className="text-2xl" />
-          </button>
+          {/* Right Section - Profile Info */}
+          <div className="flex items-center gap-4">
+            <div className="hidden md:block">
+              <UserInfo />
+            </div>
+
+            <button className="block md:hidden" onClick={toggleSidebar}>
+              <CiMenuKebab className="text-2xl" />
+            </button>
+          </div>
         </header>
 
         {/* Content Area */}
@@ -392,7 +402,9 @@ export default function Chat() {
               </h3>
 
               {/* Recommendations */}
-              <RecommendationList recommendations={selectedPrompt.recommendations}/>
+              <RecommendationList
+                recommendations={selectedPrompt.recommendations}
+              />
             </div>
           ) : (
             <div className="h-[80vh] flex items-center flex-col justify-center">

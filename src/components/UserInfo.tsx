@@ -1,8 +1,7 @@
 "use client";
-
-import { useUser, SignOutButton } from "@clerk/nextjs";
 import Image from "next/image";
 import { Dropdown } from "./Dropdown";
+import { useAuth } from "@/context/AuthContext";
 
 interface UserInfoProps {
   onLogout?: () => void; // Optional logout handler
@@ -10,33 +9,26 @@ interface UserInfoProps {
 }
 
 export const UserInfo: React.FC<UserInfoProps> = ({ onLogout,showName=true }) => {
-  const { user } = useUser(); // Access user information from Clerk
-
+  
+  const {user} = useAuth()
   if (!user) return null;
 
   return (
     <div className="flex items-center gap-2">
-      <Image
-        src={user.imageUrl}
-        alt="Profile"
-        width={40}
-        height={40}
-        className="rounded-full"
-      />
       {showName && (
         <span className="text-right max-w-48 font-medium truncate">
           {user.fullName || user.username || "User"}
-        </span> 
+        </span>
       )}
-
-      {/* <SignOutButton>
-        <button
-          className="flex items-center gap-2 text-left py-2 hover:font-bold"
-          onClick={onLogout}
-        >
-          Logout
-        </button>
-      </SignOutButton> */}
+      <Image
+        src={
+          "https://res.cloudinary.com/dcvpqwloa/image/upload/v1732898781/cinematic%20Avatars/ac2b8390-f045-4e70-a507-9955759808e4.png"
+        }
+        alt="Profile"
+        width={40}
+        height={40}
+        className="rounded-full object-contain"
+      />
     </div>
   );
 };

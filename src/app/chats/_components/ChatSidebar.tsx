@@ -20,7 +20,7 @@ export const ChatSidebar: React.FC<SidebarProps> = ({
 }) => {
   return (
     <aside
-      className={`fixed py-4 overflow-auto md:relative top-0 left-0 z-50 bg-background h-full transition-transform duration-300 ease-in-out ${
+      className={`fixed py-4 overflow-auto no-scrollbar md:relative top-0 left-0 z-50 bg-background h-full transition-transform duration-300 ease-in-out ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       } md:translate-x-0 w-3/5 md:w-1/5`}
     >

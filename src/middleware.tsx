@@ -1,12 +1,25 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export default clerkMiddleware();
+export function middleware(request: NextRequest) {
+  // Read the access token from cookies
+  const token = request.cookies.get("ACCESS_TOKEN")?.value;
+
+  const protectedRoutes = ["/chats", "/profile"];
+
+  if (
+    protectedRoutes.some((route) => request.nextUrl.pathname.startsWith(route))
+  ) {
+    if (!token) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+    if (token && request.nextUrl.pathname === "/login") {
+      return NextResponse.redirect(new URL("/chats", request.url));
+    }
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
-  matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
-    "/(api|trpc)(.*)",
-  ],
+  matcher: ["/chats/:path*", "/profile/:path*"],
 };

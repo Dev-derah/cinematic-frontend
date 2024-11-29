@@ -17,7 +17,25 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+html {
+  scrollbar-color: #1f1f1f; /* For Firefox */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-gutter: stable; /* Prevent layout shift */
+}
+::-webkit-scrollbar {
+  width: 12px;
+  scrollbar-width: thin;
+}
 
+::-webkit-scrollbar-track {
+  background: #1f1f1f;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 8px;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -120,3 +138,14 @@
 }
 
 
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
