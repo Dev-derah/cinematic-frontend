@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axiosClient from "@/utils/axiosClient";
+import axios from "axios";
 
 interface User {
   id: string;
@@ -16,6 +17,13 @@ interface AuthContextType {
   login: (accessToken: string, refreshToken: string) => void;
   logout: () => void;
   fetchUserDetails: () => Promise<void>;
+  loginUser: (username: string, password: string) => Promise<void>;
+  registerUser: (
+    username: string,
+    email: string,
+    password: string,
+    confirmPassword: string
+  ) => Promise<void>;
 }
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -67,10 +75,63 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       logout(); 
     }
   };
+  
+  const loginUser = async (username: string, password: string) => {
+    try {
+      const response = await axiosClient.post(`${baseUrl}/api/users/login/`, {
+        username,
+        password,
+      });
+
+      const { access, refresh } =
+        response.data;
+        console.log("Login sucess:", response.data);
+      login(access, refresh);
+      fetchUserDetails()
+    } catch (error) {
+      console.error("Login failed:", error);
+      throw new Error("Invalid username or password");
+    }
+  };
+
+  // Local register function
+  const registerUser = async (
+    username: string,
+    email: string,
+    password: string,
+    retype_password: string
+  ) => {
+    try {
+      if (password !== retype_password) {
+        throw new Error("Passwords do not match");
+      }
+
+      await axiosClient.post(`${baseUrl}/api/users/register/`, {
+        username,
+        email,
+        password,
+        retype_password,
+      });
+
+      console.log("Registration successful. Please log in.");
+    } catch (error) {
+      console.error("Registration failed:", error);
+      throw new Error("Registration failed. Please try again.");
+    }
+  };
+
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, user, login, logout, fetchUserDetails }}
+      value={{
+        isAuthenticated,
+        user,
+        login,
+        logout,
+        fetchUserDetails,
+        loginUser,
+        registerUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

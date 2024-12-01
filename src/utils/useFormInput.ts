@@ -16,15 +16,15 @@ export const useFormInput = ({
   const handleChange = (newValue: string) => {
     setValue(newValue);
     // Loop through validation functions and set error if any fail
-    for (const validationFn of validate) {
-      const errorMessage = validationFn(newValue);
-      if (errorMessage) {
-        setError(errorMessage); // Set the specific error message
-        return;
-      }
-    }
+    // for (const validationFn of validate) {
+    //   const errorMessage = validationFn(newValue);
+    //   if (errorMessage) {
+    //     setError(errorMessage); // Set the specific error message
+    //     return;
+    //   }
+    // }
 
-    setError(null); // Clear error if all validations pass
+    // setError(null); 
   };
 
   const handleBlur = () => {

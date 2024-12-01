@@ -6,7 +6,7 @@ interface TextInputProps {
   type?: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void; // Added onBlur prop
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
   error: string | null;
 }
 
@@ -16,7 +16,7 @@ const TextInput: React.FC<TextInputProps> = ({
   type = "text",
   value,
   onChange,
-  onBlur, // Destructure onBlur
+  onBlur,
   error,
 }) => {
   return (
@@ -29,7 +29,7 @@ const TextInput: React.FC<TextInputProps> = ({
         }`}
         placeholder={placeholder}
         onChange={onChange}
-        onBlur={onBlur} // Add onBlur handler
+        onBlur={onBlur} 
         value={value}
       />
       {error && <small className="text-red-600">{error}</small>}

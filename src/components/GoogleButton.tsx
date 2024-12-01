@@ -10,9 +10,9 @@ export const GoogleButton: React.FC<GoogleButtonProps> = ({ label, onClick }) =>
   return (
     <button
       onClick={onClick}
-      className="flex items-center justify-between bg-gray-200 rounded-full px-3 py-2 text-sm font-medium text-gray-800 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+      className="flex items-center justify-center w-full bg-gray-200 rounded-full px-3 py-2 text-sm font-medium text-gray-800 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      <div className="flex items-center">
+      <div className="flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"

@@ -106,14 +106,17 @@ export const Navbar = () => {
             ) : (
               <div className="flex gap-4">
                 {/* <CustomButton label="Login" className="bg-red-50 px-6 py-2  rounded-lg"/> */}
-                <button className="bg-red-50 px-6 py-2 rounded-lg">
+                <button
+                  className="bg-red-50 px-6 py-2 rounded-lg"
+                  onClick={() => router.push("/login")}
+                >
                   Login
                 </button>
-                {/* <CustomButton
-                    label="Sign Up"
-                    className="border-2 border-gray-300 px-6 py-2 rounded-lg"
-                  /> */}
-                <button className="border-2 border-gray-300 px-6 py-2 rounded-lg">
+
+                <button
+                  className="border-2 border-gray-300 px-6 py-2 rounded-lg"
+                  onClick={() => router.push("/register")}
+                >
                   Sign Up
                 </button>
               </div>
