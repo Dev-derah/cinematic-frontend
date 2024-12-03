@@ -1,14 +1,16 @@
 
 export interface MovieRecommendation {
-  id: number;
+  tmdb_id: number;
   title: string;
-  description: string;
-  imageUrl: string;
-  tmdbId: string;
+  overview: string;
+  release_date: string;
+  poster_path: string;
+  vote_average: string;
 }
 
 export interface Prompt {
   id: string;
   prompt: string;
-  recommendations: MovieRecommendation[];
+  createdAt: string;
+  movies: MovieRecommendation[];
 }

@@ -15,11 +15,6 @@ export const UserInfo: React.FC<UserInfoProps> = ({ onLogout,showName=true }) =>
 
   return (
     <div className="flex items-center gap-2">
-      {showName && (
-        <span className="text-right max-w-48 font-medium truncate">
-          {user.fullName || user.username || "User"}
-        </span>
-      )}
       <Image
         src={
           "https://res.cloudinary.com/dcvpqwloa/image/upload/v1732898781/cinematic%20Avatars/ac2b8390-f045-4e70-a507-9955759808e4.png"
@@ -29,6 +24,11 @@ export const UserInfo: React.FC<UserInfoProps> = ({ onLogout,showName=true }) =>
         height={40}
         className="rounded-full object-contain"
       />
+      {showName && (
+        <span className="text-right max-w-48 font-medium truncate">
+          {user.fullName || user.username || "User"}
+        </span>
+      )}
     </div>
   );
 };

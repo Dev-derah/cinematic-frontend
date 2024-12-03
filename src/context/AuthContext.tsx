@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axiosClient from "@/utils/axiosClient";
-import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface User {
   id: string;
@@ -13,6 +13,7 @@ interface User {
 
 interface AuthContextType {
   isAuthenticated: boolean;
+  isAuthLoading: boolean;
   user: User | null;
   login: (accessToken: string, refreshToken: string) => void;
   logout: () => void;
@@ -31,18 +32,20 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return !!Cookies.get("ACCESS_TOKEN");
+  });
   const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const token = Cookies.get("ACCESS_TOKEN");
-    setIsAuthenticated(!!token);
-
-    if (token) {
-      fetchUserDetails();
-    }
-    console.log('Auth provider mounted or token changed');
-  }, []);
+   const router  = useRouter();
+useEffect(() => {
+  const token = Cookies.get("ACCESS_TOKEN");
+  if (token) {
+    fetchUserDetails().finally(() => setIsAuthLoading(false));
+  } else {
+    setIsAuthLoading(false);
+  }
+}, []);
 
    const login = (accessToken: string, refreshToken: string) => {
     Cookies.set("ACCESS_TOKEN", accessToken);
@@ -50,12 +53,35 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setIsAuthenticated(true);
   };
 
-  const logout = () => {
-    Cookies.remove("ACCESS_TOKEN", { path: "/" });
-    Cookies.remove("REFRESH_TOKEN", { path: "/" });
-    setIsAuthenticated(false);
-    setUser(null);
-  };
+const logout = async () => {
+  const refresh = Cookies.get("REFRESH_TOKEN"); // Ensure this matches the cookie key
+  if (!refresh) {
+    console.error("Refresh token not found.");
+    return;
+  }
+
+  try {
+    const response = await axiosClient.post("/api/users/logout/", { refresh });
+
+    if (response.status === 200) {
+      // Remove tokens
+      Cookies.remove("ACCESS_TOKEN", { path: "/" });
+      Cookies.remove("REFRESH_TOKEN", { path: "/" });
+
+      // Update auth state
+      setIsAuthenticated(false);
+      setUser(null);
+      router.push('/')
+    } else {
+      console.error("Logout failed:", response.data);
+    }
+  } catch (err) {
+    console.error(
+      "Error during logout:",
+      err.response?.data || err.message
+    );
+  }
+};
 
   const fetchUserDetails = async () => {
     console.log("Fetching user details")
@@ -85,11 +111,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       const { access, refresh } =
         response.data;
-        console.log("Login sucess:", response.data);
       login(access, refresh);
       fetchUserDetails()
     } catch (error) {
-      console.error("Login failed:", error);
       throw new Error("Invalid username or password");
     }
   };
@@ -131,6 +155,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         fetchUserDetails,
         loginUser,
         registerUser,
+        isAuthLoading
       }}
     >
       {children}

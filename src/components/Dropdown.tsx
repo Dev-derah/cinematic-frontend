@@ -1,15 +1,17 @@
+import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 interface DropdownItem {
-  label: string; 
-  action: () => void; 
+  label: string | React.ReactNode; // Supports string or component
+  action: () => void;
 }
 
 interface DropdownProps {
-  title: string; 
-  isOpen: boolean; 
-  toggleDropdown: () => void; 
+  title: string | React.ReactNode; // Supports string or component
+  isOpen: boolean;
+  toggleDropdown: () => void;
   items: DropdownItem[];
+  direction?: "top" | "bottom" | "left" | "right"; // Dropdown direction
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -17,9 +19,18 @@ export const Dropdown: React.FC<DropdownProps> = ({
   isOpen,
   toggleDropdown,
   items,
+  direction = "bottom", // Default direction is "bottom"
 }) => {
+  // Compute dropdown position styles
+  const directionStyles = {
+    bottom: "top-full left-0",
+    top: "bottom-full left-0",
+    left: "top-0 right-full",
+    right: "top-0 left-full",
+  };
+
   return (
-    <div className="relative">
+    <div className="relative inline-block">
       {/* Dropdown Toggle */}
       <button
         className="text-2xl font-semibold flex items-center cursor-pointer"
@@ -35,7 +46,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute left-0 mt-2 bg-black-25 shadow-lg rounded-md text-white w-52 z-50">
+        <div
+          className={`absolute ${directionStyles[direction]} mt-2 bg-black-25 shadow-lg rounded-md text-white w-52 z-50`}
+        >
           <ul className="py-2">
             {items.map((item, index) => (
               <li

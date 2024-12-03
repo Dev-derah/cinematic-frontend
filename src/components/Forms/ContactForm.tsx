@@ -11,53 +11,50 @@ import {
   isPhoneNumber,
   maxLength,
 } from "@/utils/validators";
-import { useFormInput } from "@/utils/useFormInput";
-
+import { useFormInput } from "@/utils/hooks/useFormInput";
 
 const ContactForm: React.FC = () => {
- const firstNameInput = useFormInput({
-   validate: [isNotEmpty("firstname"), minLength(2)],
- });
-
- const lastNameInput = useFormInput({
-   validate: [isNotEmpty("lastname"), minLength(2)],
- });
-
- const emailInput = useFormInput({
-   validate: [isNotEmpty("email"), isEmail],
- });
-
- const phoneNumberInput = useFormInput({
-   validate: [isNotEmpty("phone number"),isPhoneNumber],
-   initialValue: "",
- });
-
- const messageInput = useFormInput({
-   validate: [isNotEmpty("message"), maxLength(600)],
- });
-
-
- const handlePhoneChange = (newValue: string | undefined) => {
-   if (newValue) {
-     phoneNumberInput.onChange(newValue);
-   } else {
-     phoneNumberInput.onChange("");
-   }
- };
-
-const handleFormSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-  // Access the form values here
-  console.log({
-    firstNameInput,
-    lastNameInput,
-    emailInput,
-    phoneNumberInput,
-    messageInput,
+  const firstNameInput = useFormInput({
+    validate: [isNotEmpty("firstname"), minLength(2)],
   });
-};
 
-  
+  const lastNameInput = useFormInput({
+    validate: [isNotEmpty("lastname"), minLength(2)],
+  });
+
+  const emailInput = useFormInput({
+    validate: [isNotEmpty("email"), isEmail],
+  });
+
+  const phoneNumberInput = useFormInput({
+    validate: [isNotEmpty("phone number"), isPhoneNumber],
+    initialValue: "",
+  });
+
+  const messageInput = useFormInput({
+    validate: [isNotEmpty("message"), maxLength(600)],
+  });
+
+  const handlePhoneChange = (newValue: string | undefined) => {
+    if (newValue) {
+      phoneNumberInput.onChange(newValue);
+    } else {
+      phoneNumberInput.onChange("");
+    }
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Access the form values here
+    console.log({
+      firstNameInput,
+      lastNameInput,
+      emailInput,
+      phoneNumberInput,
+      messageInput,
+    });
+  };
+
   return (
     <div className="p-8 rounded-lg shadow-lg w-full max-w-5xl mx-auto mt-10 h-full md:w-4/5">
       <form className="space-y-6" onSubmit={handleFormSubmit}>
@@ -114,7 +111,7 @@ const handleFormSubmit = (e: React.FormEvent) => {
         <div className="space-y-2">
           <label className="text-white">Message</label>
           <EditableField
-          value={messageInput.value}
+            value={messageInput.value}
             classes="overflow-scroll border bg-black-08 border border-black-15 rounded-md text-gray-300 outline-none h-40 no-scrollbar empty:before:content-[attr(data-placeholder)] empty:before:text-gray-500 caret-red-50 p-2"
             placeholder="Enter your Message"
             onChange={messageInput.onChange}

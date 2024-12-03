@@ -8,14 +8,13 @@ const axiosClient = axios.create({
   withCredentials: true, 
 });
 
-// Request interceptor
 axiosClient.interceptors.request.use(
   (config) => {
-    const token = Cookies.get(ACCESS_TOKEN);
+    const token = Cookies.get("ACCESS_TOKEN");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-     const googleAccessToken = Cookies.get(GOOGLE_ACCESS_TOKEN);
+     const googleAccessToken = Cookies.get("GOOGLE_ACCESS_TOKEN");
      if (googleAccessToken) {
        config.headers["X-Google-Access-Token"] = googleAccessToken;
      }
@@ -42,7 +41,6 @@ axiosClient.interceptors.response.use(
         });
 
         const { access } = response.data;
-        console.log("accessis",access)
 
         // Save the new access token
         Cookies.set("ACCESS_TOKEN", access);
@@ -52,7 +50,6 @@ axiosClient.interceptors.response.use(
         return axiosClient(originalRequest);
       } catch (refreshError) {
         // Handle refresh failure (e.g., logout the user)
-        console.error("Token refresh failed:", refreshError);
         Cookies.remove("ACCESS_TOKEN");
         Cookies.remove("REFRESH_TOKEN");
         window.location.href = "/login";

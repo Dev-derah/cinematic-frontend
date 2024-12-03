@@ -4,12 +4,8 @@ import { GoogleButton } from "@/components/GoogleButton";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { InputField } from "../Inputs/AuthInput";
-import {
-  isNotEmpty,
-  isEmail,
-  minLength,
-} from "@/utils/validators";
-import { useFormInput } from "@/utils/useFormInput";
+import { isNotEmpty, isEmail, minLength } from "@/utils/validators";
+import { useFormInput } from "@/utils/hooks/useFormInput";
 import { useAuth } from "@/context/AuthContext";
 
 type Props = {
@@ -17,15 +13,16 @@ type Props = {
 };
 export default function AuthForm({ formType }: Props) {
   const router = useRouter();
-  const {registerUser,loginUser} = useAuth();
+  const { registerUser, loginUser } = useAuth();
   const isRegistration = formType === "Registration";
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:8000/accounts/google/login/";
+    window.location.href =
+      `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=642321107794-6p8stc05rvn2g4fi2htqofbqiraj30v2.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Faccounts%2Fgoogle%2Flogin%2Fcallback%2F&scope=email%20profile&response_type=code&access_type=online&code_challenge_method=S256&flowName=GeneralOAuthFlow`;
   };
   const handleGoogleRegistration = () => {
-    window.location.href = "http://localhost:8000/accounts/google/login/";
+    window.location.href =
+      "https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=642321107794-6p8stc05rvn2g4fi2htqofbqiraj30v2.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Faccounts%2Fgoogle%2Flogin%2Fcallback%2F&scope=email%20profile&response_type=code&access_type=online&code_challenge_method=S256&flowName=GeneralOAuthFlow";
   };
-
 
   const emailInput = useFormInput({
     validate: [isNotEmpty("email"), isEmail],
@@ -42,22 +39,22 @@ export default function AuthForm({ formType }: Props) {
   const retype_PasswordInput = useFormInput({
     validate: [isNotEmpty("retype_password")],
   });
-const isFormInvalid = Boolean(
-   isRegistration
-  ? !usernameInput.value ||
-    !emailInput.value ||
-    !passwordInput.value ||
-    !retype_PasswordInput.value ||
-    usernameInput.error ||
-    emailInput.error ||
-    passwordInput.error ||
-    retype_PasswordInput.error ||
-    passwordInput.value !== retype_PasswordInput.value
-  : !usernameInput.value ||
-    !passwordInput.value ||
-    usernameInput.error ||
-    passwordInput.error
-)
+  const isFormInvalid = Boolean(
+    isRegistration
+      ? !usernameInput.value ||
+          !emailInput.value ||
+          !passwordInput.value ||
+          !retype_PasswordInput.value ||
+          usernameInput.error ||
+          emailInput.error ||
+          passwordInput.error ||
+          retype_PasswordInput.error ||
+          passwordInput.value !== retype_PasswordInput.value
+      : !usernameInput.value ||
+          !passwordInput.value ||
+          usernameInput.error ||
+          passwordInput.error
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,14 +75,14 @@ const isFormInvalid = Boolean(
           retype_PasswordInput.value
         );
         console.log("Registration successful!");
-        router.push("/login"); 
+        router.push("/login");
       } else {
         if (!usernameInput.value || !passwordInput.value) {
           throw new Error("Please fill in all required fields.");
         }
         await loginUser(usernameInput.value, passwordInput.value);
         console.log("Login successful!");
-        router.push("/chats"); 
+        router.push("/chats");
       }
     } catch (error) {
       console.error("Submission error:", error);
@@ -218,6 +215,3 @@ const isFormInvalid = Boolean(
     </div>
   );
 }
-
-
-
