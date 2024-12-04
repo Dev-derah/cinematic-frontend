@@ -95,9 +95,10 @@ export default function AuthForm({ formType }: Props) {
         <Image
           alt="Cinemtic AI"
           src="/Images/Brand/Cinematic_AI.png"
-          className="mx-auto w-auto"
+          className="mx-auto w-auto cursor-pointer"
           width={100}
           height={20}
+          onClick={()=>router.push('/')}
         />
         <h2 className=" text-center text-2xl/9 font-bold tracking-tight text-gray-300">
           {isRegistration ? "Create an account" : "Sign in to your account"}

@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axiosClient from "@/utils/axiosClient";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface User {
   id: string;
@@ -54,7 +55,8 @@ useEffect(() => {
   };
 
 const logout = async () => {
-  const refresh = Cookies.get("REFRESH_TOKEN"); // Ensure this matches the cookie key
+  const logoutToast = toast.loading("Logging out...");
+  const refresh = Cookies.get("REFRESH_TOKEN"); 
   if (!refresh) {
     console.error("Refresh token not found.");
     return;
@@ -62,29 +64,27 @@ const logout = async () => {
 
   try {
     const response = await axiosClient.post("/api/users/logout/", { refresh });
-
     if (response.status === 200) {
-      // Remove tokens
       Cookies.remove("ACCESS_TOKEN", { path: "/" });
       Cookies.remove("REFRESH_TOKEN", { path: "/" });
-
       // Update auth state
       setIsAuthenticated(false);
       setUser(null);
+      toast.success("Logout Sucessful", {
+        id: logoutToast
+      });
       router.push('/')
     } else {
       console.error("Logout failed:", response.data);
     }
   } catch (err) {
-    console.error(
-      "Error during logout:",
-      err.response?.data || err.message
-    );
+    toast.error("Logout Unsuccessful Try again", {
+      id: logoutToast,
+    });
   }
 };
 
   const fetchUserDetails = async () => {
-    console.log("Fetching user details")
     try {
       const token = Cookies.get("ACCESS_TOKEN");
       if (!token) {
@@ -103,6 +103,7 @@ const logout = async () => {
   };
   
   const loginUser = async (username: string, password: string) => {
+    const loginToast = toast.loading("Loading...");
     try {
       const response = await axiosClient.post(`${baseUrl}/api/users/login/`, {
         username,
@@ -113,8 +114,13 @@ const logout = async () => {
         response.data;
       login(access, refresh);
       fetchUserDetails()
+      toast.success("Login Sucessful", {
+        id: loginToast,
+      });
     } catch (error) {
-      throw new Error("Invalid username or password");
+      toast.error(`Login Unsucessful ${error}`, {
+        id: loginToast,
+      });
     }
   };
 

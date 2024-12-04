@@ -3,6 +3,8 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import { PopularMoviesProvider } from "@/context/PopularMoviesProvider";
 import { AuthProvider } from "@/context/AuthContext";
+import { Toaster } from "react-hot-toast";
+
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -23,7 +25,10 @@ export default function RootLayout({
         <body
           className={`${manrope.className} flex flex-col bg-black-08 relative`}
         >
-          <PopularMoviesProvider>{children}</PopularMoviesProvider>
+          <PopularMoviesProvider>
+            <Toaster/>
+            {children}
+            </PopularMoviesProvider>
         </body>
       </html>
     </AuthProvider>

@@ -135,7 +135,6 @@ export default function Chat() {
 
               {/* Recommendations */}
               <RecommendationList recommendations={selectedPrompt.movies} />
-              <button onClick={logout}>LOGOUT</button>
             </div>
           ) : (
             <div className="h-[80vh] flex items-center flex-col justify-center">

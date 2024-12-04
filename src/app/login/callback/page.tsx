@@ -16,6 +16,7 @@ export default function LoginCallback() {
 
     if (accessToken && refreshToken) {
         login(accessToken, refreshToken)
+        
       router.push("/chats");
     } else {
       // Redirect to login if tokens are missing

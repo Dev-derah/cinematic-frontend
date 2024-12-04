@@ -7,9 +7,9 @@ interface ExamplePromptProps{
 }
 export default function ExamplePrompts({ setPrompt }: ExamplePromptProps) {
   const prompts = [
-    "What are some must-watch action thrillers for this weekend?",
+    "A must-watch action thriller suitable for adults only?",
     "I'm in the mood for a feel-good comedy—any suggestions?",
-    "Can you recommend a movie with an unexpected twist?",
+    "Can you recommend a mexican movie with an unexpected twist?",
     "What's a great family-friendly movie everyone will enjoy?",
   ];
   return (

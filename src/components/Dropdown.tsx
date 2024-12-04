@@ -2,12 +2,12 @@ import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 interface DropdownItem {
-  label: string | React.ReactNode; // Supports string or component
+  label: string | React.ReactNode; 
   action: () => void;
 }
 
 interface DropdownProps {
-  title: string | React.ReactNode; // Supports string or component
+  title: string | React.ReactNode; 
   isOpen: boolean;
   toggleDropdown: () => void;
   items: DropdownItem[];
@@ -30,7 +30,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   };
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block w-full">
       {/* Dropdown Toggle */}
       <button
         className="text-2xl font-semibold flex items-center cursor-pointer"
@@ -44,10 +44,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
         />
       </button>
 
-      {/* Dropdown Menu */}
       {isOpen && (
         <div
-          className={`absolute ${directionStyles[direction]} mt-2 bg-black-25 shadow-lg rounded-md text-white w-52 z-50`}
+          className={`absolute ${directionStyles[direction]} w-full mt-2 bg-black-25 shadow-lg rounded-md text-white z-50`}
         >
           <ul className="py-2">
             {items.map((item, index) => (
