@@ -5,9 +5,10 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { IoChatbubblesOutline, IoLogOutOutline } from "react-icons/io5";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { MenuItem } from "@/components/MenuItem";
-import { useRouter, usePathname }  from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
+import Logo from "@/components/Logo";
 
 export const Navbar = () => {
   const { user } = useAuth();
@@ -58,12 +59,7 @@ export const Navbar = () => {
       <section className="relative flex justify-between items-center px-10 pt-5 pb-2 gap-8 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         {/* Left Section */}
         <div className="text-left">
-          <Image
-            src={"/Images/Brand/Cinematic_AI.png"}
-            height={150}
-            width={100}
-            alt="Cinematic AI LOGO"
-          />
+         <Logo height={150} width={100}/>
         </div>
 
         {/* Middle Section */}

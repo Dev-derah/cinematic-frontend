@@ -7,6 +7,7 @@ import { InputField } from "../Inputs/AuthInput";
 import { isNotEmpty, isEmail, minLength } from "@/utils/validators";
 import { useFormInput } from "@/utils/hooks/useFormInput";
 import { useAuth } from "@/context/AuthContext";
+import Logo from "@/components/Logo";
 
 type Props = {
   formType: "Registration" | "Login";
@@ -92,14 +93,7 @@ export default function AuthForm({ formType }: Props) {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <Image
-          alt="Cinemtic AI"
-          src="/Images/Brand/Cinematic_AI.png"
-          className="mx-auto w-auto cursor-pointer"
-          width={100}
-          height={20}
-          onClick={()=>router.push('/')}
-        />
+        <Logo height={100} width={100}/>
         <h2 className=" text-center text-2xl/9 font-bold tracking-tight text-gray-300">
           {isRegistration ? "Create an account" : "Sign in to your account"}
         </h2>
