@@ -17,7 +17,7 @@ import Loading from "./Loading";
 
 interface PromptInputProps {
   setPromptHistory?: React.Dispatch<React.SetStateAction<Prompt[]>>;
-  setSelectedPrompt?: React.Dispatch<React.SetStateAction<Prompt>>;
+  setSelectedPrompt?: React.Dispatch<React.SetStateAction<Prompt | null>>;
 }
 
 export const PromptInput: React.FC<PromptInputProps> = ({

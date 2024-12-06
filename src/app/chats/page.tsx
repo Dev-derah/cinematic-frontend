@@ -17,7 +17,7 @@ export default function Chat() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
   const { fetchRecommendationsHistory } = useFetchRecommendationsHistory();
-  const [promptHistory, setPromptHistory] = useState([]);
+  const [promptHistory, setPromptHistory] = useState<Prompt[]>([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { isAuthLoading,logout } = useAuth();
