@@ -30,8 +30,6 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-    
-    ],
   },
 };
 
