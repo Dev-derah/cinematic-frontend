@@ -9,7 +9,7 @@ export default function Logo({height,width}: Props) {
   const router = useRouter();
   return (
     <Image
-      src={"/Cinematic_AI.png"}
+      src={"/cinematic_logo.png"}
       className="h-auto w-auto mx-auto"
       height={height}
       width={width}
